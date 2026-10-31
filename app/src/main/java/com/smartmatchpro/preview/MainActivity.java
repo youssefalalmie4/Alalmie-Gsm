@@ -2,8 +2,10 @@ package com.smartmatchpro.preview;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -46,6 +48,20 @@ public final class MainActivity extends Activity {
         });
         webView.addJavascriptInterface(new Object() {
             @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
+            @JavascriptInterface public void setStatusBarColor(String color, boolean darkIcons) {
+                MainActivity.this.runOnUiThread(() -> {
+                    try {
+                        MainActivity.this.getWindow().setStatusBarColor(Color.parseColor(color));
+                        View decor = MainActivity.this.getWindow().getDecorView();
+                        int flags = decor.getSystemUiVisibility();
+                        flags = darkIcons ? flags | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                                : flags & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                        decor.setSystemUiVisibility(flags);
+                    } catch (IllegalArgumentException ignored) {
+                        // Keep the current system bar color if a theme color is invalid.
+                    }
+                });
+            }
         }, "NativeApp");
         setContentView(webView);
         webView.loadUrl("file:///android_asset/index.html");
