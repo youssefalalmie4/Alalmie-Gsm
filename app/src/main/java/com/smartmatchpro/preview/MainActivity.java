@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -43,6 +44,9 @@ public final class MainActivity extends Activity {
                 return true;
             }
         });
+        webView.addJavascriptInterface(new Object() {
+            @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
+        }, "NativeApp");
         setContentView(webView);
         webView.loadUrl("file:///android_asset/index.html");
     }
@@ -59,7 +63,7 @@ public final class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if (webView != null && webView.canGoBack()) webView.goBack();
+        if (webView != null) webView.evaluateJavascript("handleSystemBack()", null);
         else super.onBackPressed();
     }
 
