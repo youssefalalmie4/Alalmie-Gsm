@@ -67,8 +67,12 @@ public final class MainActivity extends Activity {
             @JavascriptInterface public void openGsmaDirectory() {
                 openGsmaCatalog(false);
             }
-            @JavascriptInterface public void openGsmaSearch() {
-                openGsmaCatalog(true);
+            @JavascriptInterface public void openGsmaSearch(String query) {
+                runOnUiThread(() -> {
+                    Intent intent = new Intent(MainActivity.this, GsmArenaActivity.class);
+                    intent.putExtra(GsmArenaActivity.EXTRA_QUERY, query == null ? "" : query);
+                    startActivity(intent);
+                });
             }
             private void openGsmaCatalog(boolean search) {
                 runOnUiThread(() -> {
