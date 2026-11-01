@@ -2,7 +2,6 @@ package com.smartmatchpro.preview;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.WindowManager;
 import android.net.Uri;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -17,7 +16,6 @@ public final class GsmArenaActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
         webView = new WebView(this);
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
