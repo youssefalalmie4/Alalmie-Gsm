@@ -60,13 +60,6 @@ public final class MainActivity extends Activity {
                     }
                 });
             }
-            @JavascriptInterface public void openJokerProtectorCatalog() {
-                runOnUiThread(() -> {
-                    Intent intent = new Intent(MainActivity.this, CompatibilityActivity.class);
-                    intent.putExtra(CompatibilityActivity.EXTRA_PROVIDER, CompatibilityActivity.PROVIDER_JOKER);
-                    startActivity(intent);
-                });
-            }
             @JavascriptInterface public void openCompatibilityPortal() {
                 runOnUiThread(() -> startActivity(
                         new Intent(MainActivity.this, CompatibilityActivity.class)));
