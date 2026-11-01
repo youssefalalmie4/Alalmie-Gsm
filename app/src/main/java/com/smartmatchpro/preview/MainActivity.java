@@ -113,7 +113,7 @@ public final class MainActivity extends Activity {
             }
             private boolean handleNavigation(Uri uri) {
                 if ("file".equalsIgnoreCase(uri.getScheme())
-                        && "android_asset".equalsIgnoreCase(uri.getHost())) return false;
+                        && uri.getPath() != null && uri.getPath().startsWith("/android_asset/")) return false;
                 if ("https".equalsIgnoreCase(uri.getScheme())) {
                     try { startActivity(new Intent(Intent.ACTION_VIEW, uri)); }
                     catch (Exception ignored) { }
