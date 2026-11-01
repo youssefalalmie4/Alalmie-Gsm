@@ -2,6 +2,7 @@ package com.smartmatchpro.preview;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.net.Uri;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -9,6 +10,7 @@ import android.webkit.WebViewClient;
 
 public final class GsmArenaActivity extends Activity {
     public static final String EXTRA_SEARCH = "search";
+    public static final String EXTRA_QUERY = "query";
     private WebView webView;
 
     @Override
@@ -25,10 +27,15 @@ public final class GsmArenaActivity extends Activity {
         webView.setWebChromeClient(new WebChromeClient());
         setContentView(webView);
         if (savedInstanceState == null) {
-            boolean search = getIntent().getBooleanExtra(EXTRA_SEARCH, false);
-            webView.loadUrl(search
-                    ? "https://www.gsmarena.com/"
-                    : "https://www.gsmarena.com/makers.php3");
+            String query = getIntent().getStringExtra(EXTRA_QUERY);
+            if (query != null && !query.trim().isEmpty()) {
+                webView.loadUrl("https://www.gsmarena.com/res.php3?sSearch=" + Uri.encode(query.trim()));
+            } else {
+                boolean search = getIntent().getBooleanExtra(EXTRA_SEARCH, false);
+                webView.loadUrl(search
+                        ? "https://www.gsmarena.com/"
+                        : "https://www.gsmarena.com/makers.php3");
+            }
         } else {
             webView.restoreState(savedInstanceState);
         }
