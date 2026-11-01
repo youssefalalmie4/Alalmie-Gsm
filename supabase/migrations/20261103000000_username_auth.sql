@@ -42,3 +42,25 @@ drop trigger if exists smp_sync_auth_username on auth.users;
 create trigger smp_sync_auth_username
 after insert or update of raw_user_meta_data, email_confirmed_at on auth.users
 for each row execute function public.smp_sync_auth_username();
+
+-- Backfill verified accounts that were created before username lookup was installed.
+do $$
+declare
+  existing_user record;
+begin
+  for existing_user in
+    select id from auth.users
+    where email_confirmed_at is not null
+      and coalesce(raw_user_meta_data ->> 'username', '') <> ''
+    order by created_at, id
+  loop
+    begin
+      update auth.users
+      set raw_user_meta_data = raw_user_meta_data
+      where id = existing_user.id;
+    exception when unique_violation then
+      null;
+    end;
+  end loop;
+end;
+$$;

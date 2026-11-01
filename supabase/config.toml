@@ -5,3 +5,6 @@ verify_jwt = true
 
 [functions.username-login]
 verify_jwt = false
+
+[functions.subscription-access]
+verify_jwt = false
