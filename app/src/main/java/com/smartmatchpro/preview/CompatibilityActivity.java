@@ -8,8 +8,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public final class CompatibilityActivity extends Activity {
-    public static final String EXTRA_PROVIDER = "provider";
-    public static final String PROVIDER_JOKER = "joker";
     private WebView webView;
 
     @Override
@@ -26,11 +24,7 @@ public final class CompatibilityActivity extends Activity {
         webView.setWebChromeClient(new WebChromeClient());
         setContentView(webView);
         if (savedInstanceState == null) {
-            String provider = getIntent().getStringExtra(EXTRA_PROVIDER);
-            String url = PROVIDER_JOKER.equals(provider)
-                    ? "https://ma3loma-plus.com/الجوكر-للاسكرينات-المحرك-الأسرع-للبح/"
-                    : "https://mhtref.com/compatibilities/search";
-            webView.loadUrl(url);
+            webView.loadUrl("https://mhtref.com/compatibilities/search");
         } else {
             webView.restoreState(savedInstanceState);
         }
