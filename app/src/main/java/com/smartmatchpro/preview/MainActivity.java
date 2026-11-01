@@ -47,6 +47,19 @@ public final class MainActivity extends Activity {
             }
         });
         webView.addJavascriptInterface(new Object() {
+            @JavascriptInterface public void openExternal(String url) {
+                runOnUiThread(() -> {
+                    try {
+                        Uri uri = Uri.parse(url);
+                        String scheme = uri.getScheme();
+                        if ("https".equalsIgnoreCase(scheme) || "http".equalsIgnoreCase(scheme)) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, uri));
+                        }
+                    } catch (Exception ignored) {
+                        // Ignore malformed URLs or missing browser apps.
+                    }
+                });
+            }
             @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
             @JavascriptInterface public void setStatusBarColor(String color, boolean darkIcons) {
                 MainActivity.this.runOnUiThread(() -> {
