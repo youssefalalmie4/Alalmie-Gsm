@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -81,6 +82,17 @@ public final class MainActivity extends Activity {
                     Intent intent = new Intent(MainActivity.this, GsmArenaActivity.class);
                     intent.putExtra(GsmArenaActivity.EXTRA_SEARCH, search);
                     startActivity(intent);
+                });
+            }
+            @JavascriptInterface public void hideKeyboard() {
+                runOnUiThread(() -> {
+                    InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    View target = MainActivity.this.getCurrentFocus();
+                    if (manager != null && target != null) {
+                        manager.hideSoftInputFromWindow(target.getWindowToken(), 0);
+                    }
+                    if (target != null) target.clearFocus();
+                    if (webView != null) webView.clearFocus();
                 });
             }
             @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
