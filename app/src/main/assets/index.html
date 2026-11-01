@@ -25,6 +25,73 @@ body.auth-locked .hero,body.auth-locked .sidebar,body.auth-locked .bottomnav,bod
 .login-screen{width:100%;max-width:450px;margin:0 auto;padding:5px 0 20px;animation:loginScreenEnter .32s ease both}.login-hero{display:block;margin:0 4px 17px}.login-brandline{margin:1px 0 4px;color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.02em}.login-hero h1{margin:3px 0;font-size:22px;line-height:1.35;font-weight:900}.login-hero p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}.login-card{padding:22px!important;border-radius:20px!important;animation:loginCardIn .38s cubic-bezier(.2,.75,.25,1) both}.login-form{display:grid;gap:13px}.login-form .formrow{display:grid;gap:6px}.login-form .formrow>label{font-size:12px;color:var(--ink);font-weight:800}.login-field{width:100%;min-height:51px!important;padding:12px 14px!important;border-radius:13px!important;font-size:14px!important;background:var(--bg)!important;border-color:var(--line)}.login-field:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 13%,transparent)}.login-options{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:30px;flex-wrap:wrap}.login-options .remember-login{font-size:12px}.login-options .reset-link{font-size:12px}.login-submit{width:100%;min-height:52px!important;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px!important;border-radius:14px!important;font-size:14px!important;font-weight:800!important;box-shadow:0 8px 20px color-mix(in srgb,var(--blue) 22%,transparent);transition:transform .16s ease,box-shadow .16s ease}.login-submit:active{transform:scale(.985)}.login-submit-mark{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:#ffffff26;font-size:18px;line-height:1}.login-divider{display:flex;align-items:center;gap:10px;margin:17px 0 12px;color:var(--muted);font-size:11px}.login-divider::before,.login-divider::after{content:"";height:1px;flex:1;background:var(--line)}.signup-button{width:100%;min-height:49px;display:flex;align-items:center;justify-content:space-between;gap:9px;padding:0 13px;border:1px solid var(--line);border-radius:13px;background:var(--white);color:var(--ink);font-size:13px;font-weight:800;transition:border-color .16s,background .16s,transform .16s}.signup-button:hover{border-color:var(--blue);background:var(--blue2)}.signup-button:active{transform:scale(.99)}.signup-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--blue2);color:var(--blue);font-size:18px}.login-notice{display:flex;align-items:flex-start;gap:8px;margin:15px 0 0;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--muted);font-size:10px;line-height:1.75}.login-notice-icon{color:var(--blue);font-size:14px;line-height:1.2}.login-notice p{margin:0}.auth-locked #view .login-card{padding:22px!important}.auth-locked #view .login-field{min-height:51px;font-size:14px}.auth-locked #view .login-submit,.auth-locked #view .signup-button{min-height:49px;font-size:14px}@keyframes loginScreenEnter{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@keyframes loginCardIn{from{opacity:0;transform:translateY(9px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}@media(max-width:520px){.login-screen{padding:1px 0 14px}.login-hero{margin:0 2px 14px}.login-hero h1{font-size:20px}.login-hero p{font-size:11px}.login-card{padding:18px!important;border-radius:18px!important}.auth-locked #view .login-card{padding:18px!important}.login-form{gap:11px}.login-field{min-height:49px!important}.login-options{align-items:flex-start}}
 .modalback.signup-modal{background:radial-gradient(ellipse at 50% 25%,color-mix(in srgb,var(--blue) 25%,transparent),#08111dc9 68%);backdrop-filter:blur(8px)}.modalback.signup-modal .modal{position:relative;overflow:hidden;border-radius:24px;max-width:460px;padding:20px;box-shadow:0 26px 80px #0005;animation:recoveryPop .34s cubic-bezier(.18,.82,.25,1) both}.modalback.signup-modal .modal::before{content:"";position:absolute;pointer-events:none;inset:-55% -18% auto;height:230px;background:radial-gradient(ellipse,color-mix(in srgb,var(--blue) 25%,transparent),transparent 70%)}.modalback.signup-modal .modalhead,.modalback.signup-modal #modalbody{position:relative;z-index:1}.modalback.signup-modal .recovery-shell{animation:recoveryContent .35s ease both}.modalback.signup-modal .recovery-mark{animation:recoveryBreathe 2.8s ease-in-out infinite}.signup-shell .formrow{display:grid;gap:5px}.signup-shell .formrow>label{font-size:12px;color:var(--ink);font-weight:800}.signup-shell .formrow small{line-height:1.7}.modalback.signup-modal .recovery-actions{margin-top:2px}.modalback.signup-modal .recovery-status{font-size:11px}.modalback.signup-modal .modalhead h3{font-size:15px}@media(max-width:520px){.modalback.signup-modal{padding:12px}.modalback.signup-modal .modal{padding:16px;border-radius:21px}.signup-shell .recovery-form{gap:9px}}
 .modalback.password-recovery .recovery-status,.modalback.signup-modal .recovery-status{background:var(--blue2);border-color:var(--line);color:var(--muted)}.recovery-mark .recovery-brand-image{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}</style>
+
+<style id="mobile-control-layout">
+@media (max-width: 600px) {
+  .app { padding: 14px 15px calc(94px + env(safe-area-inset-bottom)); }
+  .topbar { gap: 8px; margin-bottom: 18px; }
+  .brand { gap: 9px; min-width: 0; }
+  .logo { width: 44px; height: 44px; flex: 0 0 44px; border-radius: 13px; }
+  .brand-title-row { gap: 7px; min-width: 0; }
+  .brandname { font-size: 16px; line-height: 1.2; }
+  .brandtag { font-size: 11px; line-height: 1.35; }
+  .top-actions, .brand-controls { gap: 6px; }
+  .topbar .account-btn,
+  .topbar .appearance-shortcut,
+  .topbar .language-shortcut {
+    height: 42px; min-height: 42px; border-radius: 12px;
+  }
+  .topbar .appearance-shortcut,
+  .topbar .language-shortcut { width: 42px; padding: 0; }
+  .topbar .account-btn { padding: 0 10px; white-space: nowrap; }
+
+  .pagehead { display: flex; flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 14px; }
+  .pagehead .actions,
+  .card .actions,
+  .actions {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch; gap: 8px; width: 100%; flex: none;
+  }
+  .actions > * { width: 100%; min-width: 0; max-width: none; }
+  .actions > .btn,
+  .actions > .primary,
+  .actions > button,
+  .actions > label {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 46px; padding: 8px 10px; font-size: 14px;
+    line-height: 1.3; text-align: center; white-space: normal;
+  }
+  .actions > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+  .btn, .primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 9px 12px; border-radius: 12px;
+    font-size: 14px; line-height: 1.25;
+  }
+  .tiny { min-width: 40px; min-height: 40px; padding: 0 8px; }
+  .resultactions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+
+  .filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+  .filters > * { min-width: 0; width: 100%; flex: none; }
+  .filters .field, .filters select { min-width: 0; width: 100%; min-height: 44px; }
+  .field, select, textarea { font-size: 14px; }
+  .searchbox { width: 100%; max-width: none; }
+  .searchbox input { min-height: 44px; font-size: 15px; }
+  .searchbox button { min-height: 44px; padding: 0 14px; }
+
+  .formgrid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .formrow.full { grid-column: auto; }
+  .formrow label { font-size: 12px; }
+
+  .bottomnav { justify-content: stretch; gap: 4px; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); }
+  .bottomnav .navitem {
+    flex: 1; max-width: none; min-height: 56px; padding: 4px 1px;
+    gap: 4px; font-size: 10px; line-height: 1.2; white-space: nowrap;
+  }
+  .bottomnav .navitem span { font-size: 21px; }
+}
+</style>
+
 </head>
 <body>
 <main class="app">
