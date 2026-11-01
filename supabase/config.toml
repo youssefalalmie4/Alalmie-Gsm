@@ -1,5 +1,9 @@
 project_id = "zpqjslqeushjqksngetv"
 
+[auth.email.template.recovery]
+subject = "رمز استعادة كلمة مرور Smart Match Pro"
+content_path = "./supabase/templates/recovery.html"
+
 [functions.protector-compatibility]
 verify_jwt = true
 
