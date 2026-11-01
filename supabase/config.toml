@@ -2,3 +2,6 @@ project_id = "zpqjslqeushjqksngetv"
 
 [functions.protector-compatibility]
 verify_jwt = true
+
+[functions.username-login]
+verify_jwt = false
