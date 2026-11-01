@@ -1,0 +1,52 @@
+create table if not exists public.protector_groups (
+  group_code text not null,
+  brand text not null,
+  family text not null,
+  joker text not null default '',
+  source_snapshot date not null default date '2026-11-01',
+  primary key (group_code, brand, family)
+);
+
+alter table public.protector_groups enable row level security;
+drop policy if exists "Public can read screen protector catalog" on public.protector_groups;
+create policy "Public can read screen protector catalog"
+  on public.protector_groups for select to anon, authenticated using (true);
+grant usage on schema public to anon, authenticated;
+grant select on public.protector_groups to anon, authenticated;
+
+insert into public.protector_groups (group_code, brand, family, joker, source_snapshot)
+values
+  ('G1', 'Samsung', 'A02,A02s,A12,A13,A20s,A03,A03 CORE,A03s,A04,A04s,A22 5G,A04 CORE,F04,M04,A22s 5G,A04e,M13 5G,M02s,M32 5G,A23 4G,A23 5G,A32 5G,M33 5G', 'Oppo:A15,A15s,A16,A16k,A16e,A8,A17,A17k,A18,A5 (2020),A9 (2020),A31 (2020),A38,A57 (2022),A77,A77s,A35,A53s 5G,A16s,A 2M 5G,A 2X,A59 5G,A58s 5G,A58x 5G,A78 5G,A1X,A57s,A57e,A58 5G,A57 5G,A77 5G,A55s 5G,K10 5G,A56 5G,A54s,A11,A11x|Realme:C30,C30s,C20,C21,C25,Realme 5 (2019),Realme 5i (2020),C15,C11,C12,C35,Realme 6i,C3,C31,C33,C3i,C11 (2021),Narzo 50i Prime,Realme 5s (2019),C25s,Narzo 50i,Narzo 50A,A8,Narzo 20A,V3 5G,Narzo 20,Q2i,7i,V11 5G,Narzo 30A,C20A|Redmi:Redmi A1 PLUS,Redmi A2 PLUS,Redmi A1,Redmi A2,Redmi 9A,Redmi 10A,|Vivo:Y02t,Y20,Y02s,Y12s,Y20s,Y12,Y02,Y33s,Y21,Y3s (2021),Y20A (2021),Y73t,Y52t,Iqoo Z7i,Y02a,Y11 (2023),T2x,Y35 5G,Y72 5G,iqoo Z5x,Y15a,Y55s 5G (2021),Y32,Iqoo U5,Y21e,Y21t,Y33,Y21a,Y01,Iqoo Z6,Iqoo U5x,Y21 G,Y33e,T1x 4G,Iqoo U5e,Y30 5G,Iqoo Z6x,Y75s,Y16,Iqoo U1x,Y51a,Iqoo U3x,Y12a,Y20T,Y21s,Y15s,Y54s|Tecno:POP 5 Lite,POP 5 Pro,Spark Go (2022),Spark 4 Lite,POP 5X,Spark 4,POP 3 PLUS,Spark 6,Spark 7 T,Spark 8,Camon 12,Spark 6 Go,Spark Go (2020),Spark 7,Spark Go (2021)|Infinix:Hot 10i (X659),Hot 8 Pro,Hot 8 Lite (X650),Hot 20i (X665C,X665E),Hot 20 5G (X666,X666B),Smart 6 HD (X6512),Smart 4 (X653),Hot 12i (X665,X665B),Smart 6 (X6511,B,E),Smart 5 Pro,Hot 10 Lite (X657B),Smart 4c (X653c)|Huawei:Nova Y62 Plus,Nova Y62,Enjoy 50z,Nova Y61|Honor:X5 Plus,X6a,Play 40,Play 30|Motorola:Moto G10,Moto G30,Moto G20|Nokia:C10,C20,G10,G20,G60,G400,Nokia 5.3,2.4,C5,1.4|ZTE:Blade A54,Blade A51,Blade A71|Alcatel:3 X (2020),3 X (2019)|itel:Vision 2S (P651l),A 49,P 36 Pro,A 70,P 40,S16,Vision 1 PLUS,P37|Lenovo:K 12,K 13,K 13 Note,K 13 Pro|OnePlus:Nord N20 SE,Nord N300|TCL:40 X,20 B,20 R 5G,20 E,20 Y,30 XE 5G,20 XE,306,305,30 E,30 SE,40 R,408,406,40 XE,40 NxtPaper 5g,10 SE|Lava:Lava Z2,Lava Z6,Lava Z4,Lava Z3,Z2s,Z3 Pro,Blaze,Blaze 5G,Blaze Pro,Blaze Nxt,Yuva Pro,Yuva 2 Pro,Lava X3,Yuva 2,Blaze 2 Pro', date '2026-11-01'),
+  ('G2', 'Redmi', 'Redmi Note 10 Pro, Note 11 Pro, Note 12 Pro,10T,11T,11T PRO, NOTE 9S, NOTE 10 PRO MAX, NOTE 11 PRO PLUS 5G, NOTE 12 4G, NOTE 12 5G, NOTE 12 Pro 4G, NOTE 9 PRO Max, NOTE 9 PRO, K30 PRO, K40, K40 PRO, NOTE 12 PRO PLUS', 'Oppo:Reno 12F 5G,A98 5G,A58 4G,A60,A79 5G,F23 5G,A3X 5G,A3X 4G,K11|Samsung:A71 4G,A71 5G,A72,A73 5G,M51,M52 5G,M53 5G,M54 5G,M62,NOTE 10 LITE,NOTE 20 5G,S10 LITE,A80,A90 4G,F62,A81,A91|Realme:C55,C67 4G,Realme 10 Pro,11X,V50s 5G,C67 5G,Realme 12 5G,C65 4G,Realme 12 Plus (12+) 5G,Narzo 70 Pro 5G|Xiaomi:Mi 11X PRO,Mi 11X,Mi 10i 5G,Mi 11i,Mi 10T 5G,Mi 11T,Mi 11T PRO,Mi 12T,Mi 12T Pro,Mi 13T,Mi 13T Pro|OnePlus:10R 5G,NORD CE2 Lite 5G|Infinix:S5 (X652),Note 7 Lite (X656),Hot 12 (X675),Hot 11 2022 (X675),Hot 50 5G (X6720),Hot 50i (X6531),Smart 9 (X6532)|Vivo:Y28 4G,Y200,V29E,Y36 4G,IQOO Z9 5G,IQOO NEO 5,IQOO NEO 6|Poco:X3,X4 PRO 4G,X4 PRO 5G,F3,X3 PRO,X2,X5,F2 Pro,F4 GT,F5 Pro|Tecno:Camon 20,Camon 20 Pro|Nokia:X20,X10|Huawei:Y7A,Nova 10 SE,Nova 11 SE,Nova 12i|Honor:9X', date '2026-11-01'),
+  ('G3', 'Samsung', 'A52,A52s,A8s,A11,M11,A53 5G,A51,S 20 FE,M 31s', 'Oppo:A52,A92,A72,A92s,A93s,Reno 5 F,Reno 5 Lite,A74 4G,Reno 5 Z,A94 5G|Realme:Realme 6,Realme 7,Realme 7 Pro,Realme 6 Pro|Redmi:Redmi Redmi Note 9|Poco:M4 PRO,M5s|Huawei:Nova 7SE|Honor:30s', date '2026-11-01'),
+  ('G4', 'Samsung', 'Samsung A15 / A24, A15 4G, A15 5G, A24, A25 5G, A34 5G, F15, F34 5G, M34 5G', 'Oppo:F11|Redmi:NOTE 8 PRO,9 T,Mi9|Poco:M3', date '2026-11-01'),
+  ('G5', 'Samsung', 'Samsung A16 4G,A16 5G,A17 4G,A17 5G,A26 4G,A26 5G,M16,M36 5G', '', date '2026-11-01'),
+  ('G6', 'Samsung', 'SamsungA05,SamsungA05s,A06,A06s,A07,M14 4G', 'Realme:Realme Note 50,C63,Narzo N63,Realme Note 60,C61,Realme Note 60X,C51s,C51,C53,Narzo N53|Redmi:Redmi 13R,Redmi 13C 4G,Redmi 13C 5G|Poco:C65,M6 5G|Huawei:Nova Y72,Nova Y70 Plus,Enjoy 70,Enjoy 70Z,Nova Y70|Honor:Honor Play 30 Plus,Honor x7,Honor Play 7T,Honor Play 40 Plus,Honor x7a,Play 6T', date '2026-11-01'),
+  ('G7', 'Samsung', 'Samsung A14 4G,M14 5G,A70,F14 5G,A14 5G', 'Infinix:Hot 8 Lite (X650),Hot 8 (X650C),Smart 4 (X653),Smart 5 (X657),Smart 6 (X6511),Hot 12i (X663B)', date '2026-11-01'),
+  ('G8', 'Samsung', 'Samsung A50,A30,A20,A30s,A50s,A22 4G,A32 4G,M22,M21 2021,M31,M30,M30s,A31,F22,A40s,M32 4G,F41,M21s,M21,M10s', 'Oppo:Reno 3 5G,A73,A91,Reno 3 Youth,Reno A,R15X,K1 4G,R17,RX17 Pro,F17,Reno Z,K5,F15,Find X2 Lite,Reno 3,K7 5G|Realme:Realme XT,Realme X2|Vivo:V23e 5G,V25E,V27E,V21e 5G,Y15,V20 2021,T1 44W,Y73,S10e,S6 5G,V20 SE,V20,V21s,Iqoo Z6 Pro,T1 (Snapdragon 680),X50e,S7e,Y70,V21e 4G,Y11,Y12,Y17,Y73s,Y71t,T1 Pro|Nokia:C12|Huawei:Y6P,Enjoy 20e,Enjoy 10e,Y8P|Honor:Honor 9A', date '2026-11-01'),
+  ('G9', 'Samsung', 'Samsung A10,A10s,M10,M01s', 'Oppo:A12,A5s,A7,F9,AX7,A11K,A7n,A12s,8A Pro|Realme:Realme 3,Realme 5 Pro,Realme 3i|Redmi:A2,Redmi 8,Redmi 8A,8A Dual|Infinix:Smart 6 Plus (X612),Smart HD 2021 (X612B),Smart 3 Plus (X627),S4 (X626)|Vivo:Y91,Y90,Y93s,Y95,Y91i,Y93,Y91i (India),Y91C,Y1s,U1 China|Tecno:Spark Go 2022,Camon i4|Nokia:G10,G20|itel:K10 Plus', date '2026-11-01'),
+  ('G10', 'Oppo', 'A1K,A12s', 'Realme:Realme C2,Realme C2s,Realme C2 2020,Realme C1 2019,Realme 2|Xiaomi:Xiaomi A3,Xiaomi CC9e|itel:itel A48,itel Vision 1|Infinix:Smart HD 2021 (X612B)|Vivo:Vivo Y1s,Vivo Y91C,Vivo Y90|Tecno:POP 6,Spark Go KC1|Nokia:Nokia 2.2,Nokia 2.3|Motorola:moto E,moto E6i,moto E6s|Huawei:Huawei P30,Huawei P30 Lite,Nova 4e,Huawei P Smart 2019,Huawei P Smart 2020|Honor:Honor 8A,Honor 8A Pro,Honor 10 Lite,Honor 10i,Honor 20i,Honor 20e', date '2026-11-01'),
+  ('G11', 'Huawei', 'Huawei Y9 2019,Y8S 2020,Enjoy 9 Plus,Y9 2019 Pro', 'Honor:Honor 8X,Honor 9X Lite,View 10 Lite', date '2026-11-01'),
+  ('G12', 'Samsung', 'A35 5G,A55 5G,S24 FE,A36 5G,A56 5G,M35 5G', '', date '2026-11-01'),
+  ('G13', 'Oppo', 'Reno 4 4G,A78 4G,Reno 8Z 5G,Reno 8 4G,Reno 6 Lite,Reno 7Z 5G,F21 Pro 5G,Reno 7 Lite,Reno 8 (China),Reno 8 Lite 5G,Reno 7 5G,F21s Pro 5G,F21s Pro,A95 4G,A96 5G,Reno 4SE 5G,Reno 4 Lite,A93 4G,Reno 4F,Reno 5 5G,Reno 5K,F19 Pro,A94 4G,K9,Reno 6 5G,F17 Pro,Reno 4 5G,Reno 10X ZOOM,Reno 5G,K9 Pro,Reno 8T 5G,A94,A74,Oppo 7SE 5G,Reno 2,Reno 3 Pro', 'Realme:Narzo 60,Realme 11 (China),X7 MAX 5G,GT Master,Realme GT 5G,Realme GT Neo,Realme Q3 Pro 5G,Realme GT Neo Flash,Realme Q3 Pro Carnival,Realme X7,Realme X7 Pro,Realme X8,Realme X8 Pro,Realme X9 Pro Plus,Realme X9,Realme X50|Redmi:Note 12s,Note 11SE,Note 11s,Note 10,Note 10s|OnePlus:Nord 2T 5G,Nord N10 5G,Nord CE 5G,Nord 2 5G,OnePlus Nord 5G|Vivo:V17 Pro|Poco:M5s,M4 Pro 4g|Nokia:Nokia XR30,Nokia XR21', date '2026-11-01'),
+  ('G14', 'Infinix', 'Note 10 Pro (X695),Note 7 (X690),Note 8 (X692),Note 10 Pro NFC (X695c),Note 10 (X693),Note 11 Pro (X697),Note 11s (X698),Note 11i (X663B)', 'Tecno:Pova 3,Camon 16 Pro,Pova 2 (LE7),Pova 5G', date '2026-11-01'),
+  ('G15', 'Infinix', 'HOT 10s (X689),HOT 9 Play (X680),SMART 6 Plus (X6823C) (India),SMART 4 Plus (X680D),SMART 10 Play (X688),HOT 10T (X689C),HOT 11 Play (X688),HOT 10s NFC (X689),SMART 5 Plus (X688C) (India),SMART 6 Plus (X6823)', 'Redmi:14C 4G,14R 5G,14C 5G,15C,A4,A3 Pro,A5|TCL:TCL 20 SE|itel:P38 Pro,P37 Pro,Vision 2 Plus|Poco:C75 4G,C71,C75 5G|Tecno:Pova Neo,Spark 7P (KF7J)|Nokia:C30', date '2026-11-01'),
+  ('G16', 'Redmi', 'note 13 4G,note 12 Turbo,note 13 pro 5G,note 13 pro 4G,note 13 5G,note 13R pro,note 14 5G,K60,K60 Pro,K70e 5G', 'Poco:Poco X6 5G,Poco F5,Poco X6 Neo 5G,Poco M6 Pro 4G,Poco F6 5G,Poco F6 Pro 5G|Oppo:Reno 11 F 5G,Reno 8 Pro,Reno F25 Pro,Reno 11 F 5G|Xiaomi:Xiaomi 14T,Xiaomi 14T Pro|Huawei:Nova 6,Nova 8i,Y9A|Honor:Honor 50 Lite', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('', '', '', '', date '2026-11-01'),
+  ('G30', 'Huawei', 'P20 Lite,Nova 3e', '', date '2026-11-01'),
+  ('G31', 'Realme', 'Realme 11 Pro Plus, Realme 12 Pro Plus 5G, Realme 11 Pro 5G, Realme 12 Pro 5G, (شاشات منحنية Curved)', 'Oppo:Reno 10 5G,Reno 11 5G,Reno 8T 5G,Reno 11 Pro,A1 Pro 5G (PHQ110),Reno 9,Reno 10 Pro,Reno 9 Pro Plus,Reno 9 Pro|Honor:Honor 50', date '2026-11-01')
+on conflict (group_code, brand, family) do update set
+  joker = excluded.joker,
+  source_snapshot = excluded.source_snapshot;
