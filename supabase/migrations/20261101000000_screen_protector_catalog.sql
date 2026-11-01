@@ -8,8 +8,7 @@ create table if not exists public.protector_groups (
 );
 
 alter table public.protector_groups enable row level security;
-drop policy if exists "Public can read screen protector catalog" on public.protector_groups;
-create policy "Public can read screen protector catalog"
+create policy "smp_public_read_protector_groups"
   on public.protector_groups for select to anon, authenticated using (true);
 grant usage on schema public to anon, authenticated;
 grant select on public.protector_groups to anon, authenticated;
