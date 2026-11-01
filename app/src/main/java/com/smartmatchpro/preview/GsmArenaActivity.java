@@ -2,6 +2,7 @@ package com.smartmatchpro.preview;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.net.Uri;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
