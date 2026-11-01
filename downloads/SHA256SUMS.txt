@@ -1,1 +1,2 @@
 4db59a9a2320587555697ccc4846ac6018f03490fa81c514e032ab538531932a  Smart-Match-Pro-0.1.2-preview.apk
+8a6756b9482e93c27ecfc1adf10bdd45bc409c59e33ef3d62fce548752b4ea87  Smart-Match-Pro-0.1.3-preview.apk
