@@ -64,6 +64,19 @@ public final class MainActivity extends Activity {
                 runOnUiThread(() -> startActivity(
                         new Intent(MainActivity.this, CompatibilityActivity.class)));
             }
+            @JavascriptInterface public void openGsmaDirectory() {
+                openGsmaCatalog(false);
+            }
+            @JavascriptInterface public void openGsmaSearch() {
+                openGsmaCatalog(true);
+            }
+            private void openGsmaCatalog(boolean search) {
+                runOnUiThread(() -> {
+                    Intent intent = new Intent(MainActivity.this, GsmArenaActivity.class);
+                    intent.putExtra(GsmArenaActivity.EXTRA_SEARCH, search);
+                    startActivity(intent);
+                });
+            }
             @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
             @JavascriptInterface public void setStatusBarColor(String color, boolean darkIcons) {
                 MainActivity.this.runOnUiThread(() -> {
