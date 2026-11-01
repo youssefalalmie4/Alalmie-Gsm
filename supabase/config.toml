@@ -1,0 +1,4 @@
+project_id = "zpqjslqeushjqksngetv"
+
+[functions.protector-compatibility]
+verify_jwt = true
