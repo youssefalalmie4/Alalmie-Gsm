@@ -16,6 +16,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".GsmArenaActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".CompatibilityActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
