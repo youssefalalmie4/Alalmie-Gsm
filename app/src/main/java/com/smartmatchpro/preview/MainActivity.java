@@ -60,6 +60,10 @@ public final class MainActivity extends Activity {
                     }
                 });
             }
+            @JavascriptInterface public void openCompatibilityPortal() {
+                runOnUiThread(() -> startActivity(
+                        new Intent(MainActivity.this, CompatibilityActivity.class)));
+            }
             @JavascriptInterface public void exitApp() { runOnUiThread(MainActivity.this::finish); }
             @JavascriptInterface public void setStatusBarColor(String color, boolean darkIcons) {
                 MainActivity.this.runOnUiThread(() -> {
